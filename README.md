@@ -4,29 +4,21 @@
 
 A secure TypeScript runtime on V8
 
-* Supports TypeScript 2.8 out of the box. Uses V8 6.8.275.3. That is, it's
-  very modern JavaScript.
+* 支持TypeScript 2.8开箱即用，使用V8 6.8.275.3，可以使用更为时髦的JS
 
-* No package.json, no npm. Not explicitly compatible with Node.
+* 没有npm跟package.json，不特意与node兼容
 
-* Imports reference source code URLs only.
+* 只需要导入参考代码的url.
 	```
   import { test } from "https://unpkg.com/deno_testing@0.0.5/testing.ts"
   import { log } from "./util.ts"
 	```
-  Remote code is fetched and cached on first execution, and never updated until
-  the code is run with the `--reload` flag. (So this will still work on an
-  airplane. See `~/.deno/src` for details on the cache.)
+  远程代码在第一次执行时被提取并缓存，如果不执行 `--reload` 代码将不会被更新 (S这告诉我们，我们可以在飞机上玩代码. 有关缓存的都在这里 `~/.deno/src`.)
 
-* File system and network access can be controlled in order to run sandboxed
-  code. Defaults to read-only file system access and no network access.
-	Access between V8 (unprivileged) and Golang (privileged) is only done via
-  serialized messages defined in this protobuf:
-  https://github.com/ry/deno/blob/master/msg.proto This makes it easy to audit.
-	To enable write access explicitly use `--allow-write` and `--allow-net` for
-  network access.
+* 可以控制文件系统和网络访问权限以运行沙盒代码。默认为只读文件系统访问权限，不允许网络访问。V8（非特权）和Golang（特权）之间的访问只能通过此protobuf中定义的序列化消息完成
+  https://github.com/ry/deno/blob/master/msg.proto 这使审计变得容易。可以使用写入访问.`--allow-write` 和 `--allow-net` 来网络访问
 
-* Single executable:
+* 单个可执行文件:
 	```
 	> ls -lh deno
 	-rwxrwxr-x 1 ryan ryan 55M May 28 23:46 deno
@@ -40,11 +32,11 @@ A secure TypeScript runtime on V8
 		/lib64/ld-linux-x86-64.so.2 (0x00007f104fc64000)
 	```
 
-* Always dies on uncaught errors.
+* 可以被未捕获的错误而退出.
 
-* Supports top-level await.
+* 支持顶级等待.
 
-* Aims to be browser compatible.
+* 为了更好兼容浏览器.
 
 * Can be used as a library to easily build your own JavaScript runtime.
 	https://github.com/ry/deno/blob/master/cmd/main.go
@@ -54,21 +46,21 @@ A secure TypeScript runtime on V8
 
 Segfaulty.
 
-No docs yet. For some of the public API see
+还没有文档. 只有一些公共的API:
 https://github.com/ry/deno/blob/master/deno.d.ts
 
-And examples are around here:
+有几个例子:
 https://github.com/ry/deno/blob/master/testdata/004_set_timeout.ts
 
-Roadmap is here: https://github.com/ry/deno/blob/master/TODO.txt
+这是一个可以引导你的地图:
+https://github.com/ry/deno/blob/master/TODO.txt
 
 
 ## Compile instructions
 
-I will release binaries at some point but for now you have to build it
-yourself.
+我会在某个时候发布二进制文件，但现在你必须自己构建它，不要想着偷懒.
 
-You need Protobuf 3. On Linux this might work:
+你需要 Protobuf 3.在 Linux上去干活 :
 ```
 cd ~
 wget https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-linux-x86_64.zip
@@ -76,25 +68,25 @@ unzip protoc-3.1.0-linux-x86_64.zip
 export PATH=$HOME/bin:$PATH
 ```
 
-Then you need `protoc-gen-go` and `go-bindata`:
+之后你会需要 `protoc-gen-go` 和 `go-bindata`:
 ```
 go get -u github.com/golang/protobuf/protoc-gen-go
 go get -u github.com/jteeuwen/go-bindata/...
 ```
 
-You need to get and build `v8worker2`. It takes about 30 minutes to build:
+你需要获得并建立 `v8worker2`.它大概.....需要大约30分钟的时间来构建:
 ```
 go get -u github.com/ry/v8worker2
 cd $GOPATH/src/github.com/ry/v8worker2
 ./build.py --use_ccache
 ```
 
-Finally you can get `deno` and its other Go deps.
+最终你可以得到 `deno` 和它的其他go deps.
 ```
 go get -u github.com/ry/deno/...
 ```
 
-Now you can build deno and run it:
+现在你可以建立项目然后跑起来了:
 ```
 > cd $GOPATH/src/github.com/ry/deno
 > make
@@ -107,12 +99,12 @@ Hello World
 ## make commands
 
 ```bash
-make deno # Builds the deno executable
+make deno # 构建deno可执行文件
 
-make test # Runs the tests.
+make test # ＃运行测试.
 
-make fmt # Formats the code.
+make fmt # 格式化代码.
 
-make clean # Cleans the build.
+make clean # 清理构建.
 ```
 
