@@ -16,7 +16,7 @@ A secure TypeScript runtime on V8
   远程代码在第一次执行时被提取并缓存，如果不执行 `--reload` 代码将不会被更新 (S这告诉我们，我们可以在飞机上玩代码. 有关缓存的都在这里 `~/.deno/src`.)
 
 * 可以控制文件系统和网络访问权限以运行沙盒代码。默认为只读文件系统访问权限，不允许网络访问。V8（非特权）和Golang（特权）之间的访问只能通过此protobuf中定义的序列化消息完成
-  https://github.com/ry/deno/blob/master/msg.proto 这使审计变得容易。可以使用写入访问.`--allow-write` 和 `--allow-net` 来网络访问
+  https://github.com/ry/deno/blob/master/msg.proto 这使审计变得容易。可以使用写入访问.`--allow-write` 和 `--allow-net` 来访问网络
 
 * 单个可执行文件:
 	```
@@ -38,7 +38,7 @@ A secure TypeScript runtime on V8
 
 * 为了更好兼容浏览器.
 
-* Can be used as a library to easily build your own JavaScript runtime.
+* 可以使用它来轻松构建逆的 javascript runtime.
 	https://github.com/ry/deno/blob/master/cmd/main.go
 
 
