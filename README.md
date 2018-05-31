@@ -34,7 +34,7 @@ A secure TypeScript runtime on V8
 
 * 可以被未捕获的错误而退出.
 
-* 支持顶级等待.
+* 支持 top-level 的 await.
 
 * 为了更好兼容浏览器.
 
